@@ -1,0 +1,651 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>LaserStrike Party — Выездной Лазерный Тир на Ваш Праздник!</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@700;900&family=Roboto:wght@400;500&display=swap" rel="stylesheet">
+    
+    <style>
+        /* ======================================== */
+        /*          ОСНОВНЫЕ СТИЛИ И ПЕРЕМЕННЫЕ     */
+        /* ======================================== */
+        :root {
+            --primary-color: #FF416C;
+            --secondary-color: #FF4B2B;
+            --dark-color: #1a1a2e;
+            --light-color: #f4f4f9;
+            --accent-color: #00c6ff;
+            --text-color: #e0e0e0;
+            --header-height: 70px;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+            font-size: 16px;
+        }
+
+        body {
+            font-family: 'Roboto', sans-serif;
+            line-height: 1.6;
+            background-color: var(--dark-color);
+            color: var(--text-color);
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        h1, h2, h3 {
+            font-family: 'Montserrat', sans-serif;
+            font-weight: 700;
+            line-height: 1.2;
+        }
+
+        h2 {
+            font-size: 2.5rem;
+            text-align: center;
+            margin-bottom: 40px;
+            color: var(--light-color);
+            text-transform: uppercase;
+        }
+
+        section {
+            padding: 80px 0;
+        }
+
+        .btn {
+            display: inline-block;
+            padding: 15px 35px;
+            font-family: 'Montserrat', sans-serif;
+            font-weight: 700;
+            font-size: 1rem;
+            text-decoration: none;
+            color: #fff;
+            background-image: linear-gradient(45deg, var(--primary-color), var(--secondary-color));
+            border-radius: 50px;
+            border: none;
+            cursor: pointer;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .btn:hover {
+            transform: scale(1.05);
+            box-shadow: 0 10px 20px rgba(255, 65, 108, 0.4);
+        }
+
+        /* ======================================== */
+        /*          НАВИГАЦИЯ (HEADER)              */
+        /* ======================================== */
+        .main-header {
+            position: sticky;
+            top: 0;
+            left: 0;
+            width: 100%;
+            background-color: rgba(26, 26, 46, 0.9);
+            backdrop-filter: blur(10px);
+            z-index: 1000;
+            height: var(--header-height);
+            transition: background-color 0.3s ease;
+        }
+
+        .main-nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            height: 100%;
+        }
+
+        .logo {
+            font-family: 'Montserrat', sans-serif;
+            font-weight: 900;
+            font-size: 1.5rem;
+            color: #fff;
+            text-decoration: none;
+        }
+
+        .logo span {
+            color: var(--primary-color);
+        }
+
+        .nav-links {
+            display: flex;
+            list-style: none;
+        }
+
+        .nav-links li {
+            margin-left: 30px;
+        }
+
+        .nav-links a {
+            color: #fff;
+            text-decoration: none;
+            font-weight: 500;
+            position: relative;
+            padding-bottom: 5px;
+            transition: color 0.3s ease;
+        }
+
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background-color: var(--primary-color);
+            transition: width 0.3s ease;
+        }
+
+        .nav-links a:hover {
+            color: var(--primary-color);
+        }
+
+        .nav-links a:hover::after {
+            width: 100%;
+        }
+        
+        /* Мобильное меню */
+        .menu-toggle {
+            display: none;
+            flex-direction: column;
+            cursor: pointer;
+        }
+
+        .menu-toggle .bar {
+            width: 25px;
+            height: 3px;
+            background-color: #fff;
+            margin: 4px 0;
+            transition: 0.4s;
+        }
+
+
+        /* ======================================== */
+        /*          ГЛАВНЫЙ РАЗДЕЛ (HERO)           */
+        /* ======================================== */
+        #hero {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            min-height: calc(100vh - var(--header-height));
+            background: var(--dark-color) url('https://www.transparenttextures.com/patterns/cubes.png') repeat;
+            padding-top: 0;
+        }
+
+        .hero-content h1 {
+            font-size: 4rem;
+            font-weight: 900;
+            margin-bottom: 20px;
+            background: linear-gradient(45deg, var(--primary-color), var(--accent-color));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            animation: fadeInDown 1s ease-out;
+        }
+
+        .hero-content p {
+            font-size: 1.2rem;
+            max-width: 600px;
+            margin: 0 auto 40px;
+            animation: fadeInUp 1s ease-out 0.5s;
+            animation-fill-mode: backwards;
+        }
+        
+        .hero-content .btn {
+            animation: fadeInUp 1s ease-out 1s;
+            animation-fill-mode: backwards;
+        }
+
+        @keyframes fadeInDown {
+            from { opacity: 0; transform: translateY(-30px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        @keyframes fadeInUp {
+            from { opacity: 0; transform: translateY(30px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        /* ======================================== */
+        /*          РАЗДЕЛ "О НАС"                  */
+        /* ======================================== */
+        #about {
+            background-color: #1f1f38;
+        }
+
+        .about-content {
+            display: flex;
+            align-items: center;
+            gap: 50px;
+        }
+
+        .about-text {
+            flex: 1;
+        }
+        
+        .about-text h3 {
+            font-size: 1.8rem;
+            color: var(--primary-color);
+            margin-bottom: 20px;
+        }
+
+        .about-image {
+            flex: 1;
+            max-width: 500px;
+        }
+
+        .about-image img {
+            width: 100%;
+            border-radius: 15px;
+            box-shadow: 0 15px 30px rgba(0,0,0,0.3);
+        }
+
+        /* ======================================== */
+        /*          РАЗДЕЛ "ТЕМАТИКИ"               */
+        /* ======================================== */
+        .themes-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+        }
+
+        .theme-card {
+            background-color: #1f1f38;
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .theme-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 30px rgba(0, 198, 255, 0.2);
+        }
+
+        .theme-card-img {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+        }
+
+        .theme-card-content {
+            padding: 25px;
+        }
+
+        .theme-card-content h3 {
+            font-size: 1.4rem;
+            color: var(--accent-color);
+            margin-bottom: 10px;
+        }
+
+        /* ======================================== */
+        /*          РАЗДЕЛ "КОНТАКТЫ"               */
+        /* ======================================== */
+        #contact {
+            background-color: #1f1f38;
+            text-align: center;
+        }
+
+        .contact-info {
+            max-width: 600px;
+            margin: 0 auto 40px;
+        }
+
+        .contact-info p {
+            font-size: 1.1rem;
+            margin-bottom: 20px;
+        }
+
+        .contact-info strong {
+            color: var(--accent-color);
+        }
+
+        /* ======================================== */
+        /*          ПОДВАЛ (FOOTER)                 */
+        /* ======================================== */
+        footer {
+            text-align: center;
+            padding: 30px 20px;
+            background-color: var(--dark-color);
+            border-top: 1px solid #333;
+        }
+
+        /* ======================================== */
+        /*          РАЗДЕЛ "ОТЗЫВЫ"                 */
+        /* ======================================== */
+        #reviews {
+            background-color: #1f1f38;
+        }
+
+        .reviews-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 30px;
+        }
+
+        .review-card {
+            background: var(--dark-color);
+            padding: 30px;
+            border-radius: 15px;
+            border: 1px solid #333;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .review-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(0, 198, 255, 0.15);
+        }
+
+        .review-text {
+            font-style: italic;
+            margin-bottom: 25px;
+            position: relative;
+            padding-left: 35px;
+        }
+
+        .review-text::before {
+            content: '“';
+            position: absolute;
+            left: 0;
+            top: -10px;
+            font-family: 'Montserrat', sans-serif;
+            font-size: 3rem;
+            color: var(--primary-color);
+            opacity: 0.5;
+        }
+
+        .review-author {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            margin-top: auto;
+        }
+
+        .review-author img {
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 2px solid var(--accent-color);
+        }
+
+        .author-info span {
+            font-size: 0.9rem;
+            color: #aaa;
+        }
+
+        /* ======================================== */
+        /*          АДАПТИВНОСТЬ (MEDIA QUERIES)    */
+        /* ======================================== */
+        @media (max-width: 768px) {
+            h2 {
+                font-size: 2rem;
+            }
+
+            /* Адаптация навигации */
+            .nav-links {
+                position: fixed;
+                top: var(--header-height);
+                left: -100%;
+                width: 100%;
+                height: calc(100vh - var(--header-height));
+                flex-direction: column;
+                align-items: center;
+                justify-content: center;
+                background-color: var(--dark-color);
+                transition: left 0.5s ease;
+            }
+            
+            .nav-links.active {
+                left: 0;
+            }
+
+            .nav-links li {
+                margin: 20px 0;
+            }
+            
+            .nav-links a {
+                font-size: 1.5rem;
+            }
+
+            .menu-toggle {
+                display: flex;
+            }
+            
+            .menu-toggle.active .bar:nth-child(1) {
+                transform: rotate(-45deg) translate(-5px, 6px);
+            }
+            .menu-toggle.active .bar:nth-child(2) {
+                opacity: 0;
+            }
+            .menu-toggle.active .bar:nth-child(3) {
+                transform: rotate(45deg) translate(-5px, -6px);
+            }
+
+            /* Адаптация главного раздела */
+            #hero {
+                min-height: 80vh;
+            }
+            .hero-content h1 {
+                font-size: 2.8rem;
+            }
+            .hero-content p {
+                font-size: 1rem;
+            }
+
+            /* Адаптация раздела "О нас" */
+            .about-content {
+                flex-direction: column;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- ======================= НАВИГАЦИЯ ======================= -->
+    <header class="main-header">
+        <nav class="container main-nav">
+            <a href="#hero" class="logo">LaserStrike<span>.</span>Party</a>
+            <ul class="nav-links">
+                <li><a href="#about">О нас</a></li>
+                <li><a href="#themes">Тематики</a></li>
+                <li><a href="#reviews">Отзывы</a></li>
+                <li><a href="#contact">Контакты</a></li>
+                <li><a href="#contact" class="btn">Заказать</a></li>
+            </ul>
+            <div class="menu-toggle">
+                <div class="bar"></div>
+                <div class="bar"></div>
+                <div class="bar"></div>
+            </div>
+        </nav>
+    </header>
+
+    <main>
+        <!-- ======================= ГЛАВНЫЙ ЭКРАН ======================= -->
+        <section id="hero">
+            <div class="hero-content container">
+                <h1>ВАШ ПРАЗДНИК — НАША МИШЕНЬ!</h1>
+                <p>Выездной лазерный тир для дней рождений, корпоративов и любых мероприятий. Гарантируем взрыв эмоций и незабываемые впечатления!</p>
+                <a href="#contact" class="btn">Забронировать дату</a>
+            </div>
+        </section>
+
+        <!-- ======================= О НАС ======================= -->
+        <section id="about">
+            <div class="container">
+                <h2>Кто мы такие?</h2>
+                <div class="about-content">
+                    <div class="about-image">
+                        <!-- Рекомендуется заменить на реальное фото вашей команды или оборудования -->
+                        <img src="https://images.unsplash.com/photo-1583453334993-35245a016f8c?q=80&w=1935&auto=format&fit=crop" alt="Команда лазерного тира в действии">
+                    </div>
+                    <div class="about-text">
+                        <h3>Наша история — от хобби до праздника</h3>
+                        <p>Все началось с группы энтузиастов, влюбленных в технологии и активный отдых. Мы хотели создать развлечение, которое было бы одинаково интересно и детям, и взрослым, безопасным и невероятно захватывающим. Так родился "LaserStrike Party".</p>
+                        <p>Сегодня мы — профессиональная команда, которая привозит адреналин и веселье прямо к вам. Мы используем самое современное и безопасное оборудование, чтобы каждый выстрел был точным, а каждая игра — уникальной. Наша миссия — сделать ваш праздник легендарным!</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ======================= ТЕМАТИКИ ТИРА ======================= -->
+        <section id="themes">
+            <div class="container">
+                <h2>Наши фирменные тематики</h2>
+                <div class="themes-grid">
+                    <!-- Карточка 1 -->
+                    <div class="theme-card">
+                        <img src="https://images.unsplash.com/photo-1599219154282-5b233a5f343a?q=80&w=2070&auto=format&fit=crop" alt="Зомби Апокалипсис" class="theme-card-img">
+                        <div class="theme-card-content">
+                            <h3>Зомби Апокалипсис</h3>
+                            <p>Сможете ли вы остановить орды ходячих мертвецов? Проверьте свою меткость в борьбе за выживание.</p>
+                        </div>
+                    </div>
+                    <!-- Карточка 2 -->
+                    <div class="theme-card">
+                        <img src="https://images.unsplash.com/photo-1534796636912-3b95b3ab5986?q=80&w=2071&auto=format&fit=crop" alt="Космические Рейнджеры" class="theme-card-img">
+                        <div class="theme-card-content">
+                            <h3>Космические Рейнджеры</h3>
+                            <p>Защитите галактику от инопланетных захватчиков. Футуристическое оружие и космические цели.</p>
+                        </div>
+                    </div>
+                    <!-- Карточка 3 -->
+                    <div class="theme-card">
+                        <img src="https://images.unsplash.com/photo-1562725995-d6c157065692?q=80&w=2070&auto=format&fit=crop" alt="Дикий Запад" class="theme-card-img">
+                        <div class="theme-card-content">
+                            <h3>Дуэль на Диком Западе</h3>
+                            <p>Почувствуйте себя ковбоем. Соревнуйтесь в скорости и точности, сбивая бутылки и мишени.</p>
+                        </div>
+                    </div>
+                    <!-- Карточка 4 -->
+                    <div class="theme-card">
+                        <img src="https://images.unsplash.com/photo-1612198743093-64635b7a9f38?q=80&w=1974&auto=format&fit=crop" alt="Спецназ" class="theme-card-img">
+                        <div class="theme-card-content">
+                            <h3>Миссия "Антитеррор"</h3>
+                            <p>Тренировка для настоящих спецагентов. Поражайте цели быстро и без промахов, как в спецназе.</p>
+                        </div>
+                    </div>
+                    <!-- Карточка 5 -->
+                    <div class="theme-card">
+                        <img src="https://images.unsplash.com/photo-1526481280643-3b94b24a01b3?q=80&w=2070&auto=format&fit=crop" alt="Пираты" class="theme-card-img">
+                        <div class="theme-card-content">
+                            <h3>Сокровища Пиратов</h3>
+                            <p>Йо-хо-хо! Стреляйте по летящим попугаям, сундукам с сокровищами и черепам. На абордаж!</p>
+                        </div>
+                    </div>
+                    <!-- Карточка 6 -->
+                    <div class="theme-card">
+                        <img src="https://images.unsplash.com/photo-1517976487613-2dbfb2b16259?q=80&w=2070&auto=format&fit=crop" alt="Спорт" class="theme-card-img">
+                        <div class="theme-card-content">
+                            <h3>Олимпийский Чемпион</h3>
+                            <p>Классическая спортивная стрельба по движущимся и статичным мишеням. Для самых метких.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ======================= ОТЗЫВЫ ======================= -->
+        <section id="reviews">
+            <div class="container">
+                <h2>Что говорят наши клиенты</h2>
+                <div class="reviews-grid">
+                    <!-- Отзыв 1 -->
+                    <div class="review-card">
+                        <p class="review-text">"Это было нечто! Заказывали тир на корпоратив, и все остались в восторге. Отличная организация, крутое оборудование и море позитива. Ребята, вы лучшие!"</p>
+                        <div class="review-author">
+                            <img src="https://images.unsplash.com/photo-1535713875002-d1d0cf377fde?q=80&w=2080&auto=format&fit=crop" alt="Фото клиента">
+                            <div class="author-info">
+                                <strong>Алексей Петров</strong>
+                                <span>Корпоратив "ТехноСтрой"</span>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Отзыв 2 -->
+                    <div class="review-card">
+                        <p class="review-text">"Праздновали день рождения сына (12 лет). Дети были просто счастливы, да и взрослые не отставали. Безопасно, весело и очень необычно. Спасибо за незабываемый праздник!"</p>
+                        <div class="review-author">
+                            <img src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?q=80&w=1974&auto=format&fit=crop" alt="Фото клиента">
+                            <div class="author-info">
+                                <strong>Екатерина Иванова</strong>
+                                <span>День рождения сына</span>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Отзыв 3 -->
+                    <div class="review-card">
+                        <p class="review-text">"Отличный способ разнообразить любое мероприятие. Приехали вовремя, все быстро установили. Инструкторы — профессионалы. Рекомендую всем, кто хочет удивить гостей."</p>
+                        <div class="review-author">
+                            <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?q=80&w=1974&auto=format&fit=crop" alt="Фото клиента">
+                            <div class="author-info">
+                                <strong>Михаил Васильев</strong>
+                                <span>Юбилей</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ======================= КОНТАКТЫ ======================= -->
+        <section id="contact">
+            <div class="container">
+                <h2>Свяжитесь с нами</h2>
+                <div class="contact-info">
+                    <p>Готовы сделать ваш праздник незабываемым? Позвоните нам или напишите, чтобы обсудить детали и забронировать дату!</p>
+                    <p><strong>Телефон:</strong> +7 (999) 123-45-67</p>
+                    <p><strong>Email:</strong> order@laserstrike.party</p>
+                    <p><strong>Часы работы:</strong> Принимаем заказы ежедневно с 10:00 до 21:00</p>
+                    <p><strong>Местоположение:</strong> Мы выезжаем в любую точку города и области!</p>
+                </div>
+                <a href="tel:+79991234567" class="btn">Позвонить сейчас</a>
+            </div>
+        </section>
+    </main>
+
+    <!-- ======================= ПОДВАЛ ======================= -->
+    <footer>
+        <div class="container">
+            <p>&copy; 2024 LaserStrike.Party. Все права защищены.</p>
+        </div>
+    </footer>
+
+    <script>
+        // Скрипт для мобильного меню
+        const menuToggle = document.querySelector('.menu-toggle');
+        const navLinks = document.querySelector('.nav-links');
+
+        menuToggle.addEventListener('click', () => {
+            menuToggle.classList.toggle('active');
+            navLinks.classList.toggle('active');
+        });
+        
+        // Закрытие меню при клике на ссылку
+        document.querySelectorAll('.nav-links a').forEach(link => {
+            link.addEventListener('click', () => {
+                if (navLinks.classList.contains('active')) {
+                    menuToggle.classList.remove('active');
+                    navLinks.classList.remove('active');
+                }
+            });
+        });
+    </script>
+
+</body>
+</html>
